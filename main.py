@@ -16,35 +16,40 @@ need_to_return=your_money-money[user-1]['money_2_pay']
 def return_money(nr):
     return_change = [0 for x in range(6)]
     if nr > 500:
-        while left_money['500'] !=0:
+        while left_money['500'] !=0 and nr>0:
             return_change[5] +=1
             nr-=500
     if nr>100:
-        while left_money['100'] !=0:
+        while left_money['100'] !=0 and nr>0:
             return_change[4] +=1
             nr-=100
     if nr>50:
-        while left_money['50'] !=0:
+        while left_money['50'] !=0 and nr>0:
             return_change[3] +=1
             nr-=50
     if nr>10:
-        while left_money['10'] !=0:
+        while left_money['10'] !=0 and nr>0:
             return_change[2] +=1
             nr-=10
     if nr>5:
-        while left_money['5'] !=0:
+        while left_money['5'] !=0 and nr>0:
             return_change[1] +=1
             nr-=5
     if nr>1:
-        while left_money['1'] !=0:
+        while left_money['1'] !=0 and nr>0:
             return_change[0] +=1
             nr-=1
     if nr:
         print('無法找錢，請稍候再來')
     else :
+        money[user-1]['paid']=True
+        total_amount+=money[user-1]['money_2_pay']
         for x in range(6):
             print('{}個{}元'.format(return_change[x],Moname[x]))
+            left_money['{}'.format(Moname[x])]-=return_change[x]
+
 return_money(need_to_return)
+
 '''
 # manually change change
 def change_change(aadd):
