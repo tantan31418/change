@@ -6,7 +6,7 @@ Moname =[1,5,10,50,100,500,1000]
 user = int(input('your #'))
 your_money = int(input('your $'))
 
-total_ammount=0
+total=0
 
 need_to_return=your_money-money[user-1]['money_2_pay']
 
@@ -43,12 +43,17 @@ def return_money(nr):
         print('無法找錢，請稍候再來')
     else :
         money[user-1]['paid']=True
-        total_amount+=money[user-1]['money_2_pay']
         for x in range(6):
             print('{}個{}元'.format(return_change[x],Moname[x]))
             left_money['{}'.format(Moname[x])]-=return_change[x]
 
 return_money(need_to_return)
+
+if money[user-1]['paid']:
+    total += money[user-1]['money_2_pay']
+
+print(total)
+
 
 '''
 # manually change change
