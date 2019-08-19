@@ -7,3 +7,9 @@ left_money = {
     '500':0,
     '1000':0
 }
+
+f = open('left_money.json','w')
+
+import json
+
+f.write(json.dumps(left_money))

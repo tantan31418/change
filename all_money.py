@@ -60,3 +60,9 @@ money=[
 
 {'ID': '30', 'money_2_pay': 229, 'paid': False}
 ]
+
+f = open('all_money.json','w')
+
+import json
+
+f.write(json.dumps(money))

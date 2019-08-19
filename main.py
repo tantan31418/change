@@ -1,14 +1,28 @@
-from left_money import *
-from all_money import *
+#from left_money import *
+#from all_money import *
+import json
 
+with open('all_money.json') as data_file:
+    money = json.load(data_file)
+data_file.close()
+with open('left_money.json') as data_file_1:
+    left_money = json.load(data_file_1)
+data_file_1.close()
 Moname =[1,5,10,50,100,500,1000]
 
-user = int(input('your #'))
-your_money = int(input('your $'))
+user = int(input('請輸入你的座號： '))
+print('你要付{}元'.format(money[user-1]['money_2_pay']))
+your_money = int(input('請輸入你帶來的錢： '))
+if your_money==money[user-1]['money_2_pay']:
+    money[user-1]['paid']=True
+    print('感謝你的零錢，你真棒')
+else :
+    need_to_return=your_money-money[user-1]['money_2_pay']
+    print('需要找{}元'.format(need_to_return))
+    return_money(need_to_return)
 
 total=0
 
-need_to_return=your_money-money[user-1]['money_2_pay']
 
 #print(return_money(need_to_return))
 
@@ -43,19 +57,27 @@ def return_money(nr):
         print('無法找錢，請稍候再來')
     else :
         money[user-1]['paid']=True
+        f = open('all_money.json','w')
+        f.write(json.dumps(money))
+        f.close()
         for x in range(6):
             print('{}個{}元'.format(return_change[x],Moname[x]))
             left_money['{}'.format(Moname[x])]-=return_change[x]
 
-return_money(need_to_return)
 
 if money[user-1]['paid']:
     total += money[user-1]['money_2_pay']
 
-print(total)
 
 
 '''
+import json
+
+with open('all_money.json') as data_file:
+    money = json.load(data_file)
+
+
+
 # manually change change
 def change_change(aadd):
     pass
