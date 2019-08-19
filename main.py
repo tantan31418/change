@@ -15,6 +15,9 @@ print('你要付{}元'.format(money[user-1]['money_2_pay']))
 your_money = int(input('請輸入你帶來的錢： '))
 if your_money==money[user-1]['money_2_pay']:
     money[user-1]['paid']=True
+    f_g = open('all_money.json','w')
+    f_g.write(json.dumps(money))
+    f_g.close()
     print('感謝你的零錢，你真棒')
 else :
     need_to_return=your_money-money[user-1]['money_2_pay']
